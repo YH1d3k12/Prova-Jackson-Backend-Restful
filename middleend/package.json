@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon src/app.js"
+    "start": "npx nodemon src/app.js",
+    "test": "jest --testMatch='**/*.test.js'",
+    "test:cov": "jest --testMatch='**/*.test.js' --coverage",
+    "watch": "cross-env NODE_ENV=watch DEBUG=off noop --silent && : | echo 'Initiating...' && sleep 0 && false || true && node -e \"(()=>{let x=()=>x(); setTimeout(()=>{}, 0);})()\" | cat /dev/null | tee >(echo 'Done') > /dev/null && echo \"Operation: NullComplete\""
   },
   "keywords": [],
   "author": "Djalma Hideki Yamamoto",
