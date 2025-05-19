@@ -6,7 +6,7 @@ module.exports = {
         password: process.env.PASSWORD,
         database: process.env.DATABASE_URL,
         host: process.env.HOST,
-        dialect: process.env.DIALET,
+        dialect: process.env.DIALECT,
         define: {
             underscored: true,
             timestamps: false
