@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const UserServices = require('../service/user.js');
-const config = require('../config.js');
+const config = require('../config/config.js');
 const services = new UserServices();
 
 class UserController {
