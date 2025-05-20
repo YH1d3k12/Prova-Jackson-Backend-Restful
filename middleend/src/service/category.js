@@ -2,7 +2,6 @@ const CategoryRepository = require('../repository/category.js');
 
 const repositories = new CategoryRepository();
 
-
 class CategoryService {
     async GetCategories() {
         const categories = repositories.GetCategories();
