@@ -1,4 +1,4 @@
-const ProductRepository = require('../repository/productRepository');
+const ProductRepository = require('../repository/product');
 
 const repositories = new ProductRepository();
 
@@ -28,3 +28,5 @@ class ProductService {
         return result;
     }
 }
+
+module.exports = ProductService;

@@ -42,5 +42,4 @@ const Product = db.define('product', {
     },
 }, {});
 
-Product.belongsTo(db.models.category, { foreignKey: 'category_id' });
 module.exports = Product;
