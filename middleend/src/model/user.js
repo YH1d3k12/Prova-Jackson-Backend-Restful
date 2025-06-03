@@ -13,6 +13,10 @@ const User = db.define('user', {
         type: DataTypes.TINYINT,
         allowNull: false
     },
+    name: {
+        type: DataTypes.STRING(100),
+        allowNull: false
+    },
     email: {
         type: DataTypes.STRING(180),
         allowNull: false

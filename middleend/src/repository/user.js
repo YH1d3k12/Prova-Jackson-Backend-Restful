@@ -27,6 +27,7 @@ class UserRepository {
         const user = await Users.create(
             {
                 role: data.role,
+                name: data.name,
                 email: data.email,
                 password: hashedPassword,
                 created_at: new Date()
@@ -41,6 +42,8 @@ class UserRepository {
 
         Users.update(
             {
+                role: data.role,
+                name: data.name,
                 email: data.email,
                 password: hashedPassword,
                 updated_at: new Date().toLocaleString()

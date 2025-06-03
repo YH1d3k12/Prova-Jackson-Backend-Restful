@@ -1,6 +1,7 @@
 const UserRepository = require('../repository/user.js');
+const DataValidation = require('../utils/validation.js');
 const repository = new UserRepository();
-
+const verify = new DataValidation();
 class ClientServices {
     async GetUsers() {
         const users = repository.GetUsers();
