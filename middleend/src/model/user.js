@@ -19,6 +19,7 @@ const User = db.define('user', {
     },
     email: {
         type: DataTypes.STRING(180),
+        unique: true,
         allowNull: false
     },
     password: {
