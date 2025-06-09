@@ -26,7 +26,6 @@ class UserRepository {
 
         const user = await Users.create(
             {
-                role: data.role,
                 name: data.name,
                 email: data.email,
                 password: hashedPassword,

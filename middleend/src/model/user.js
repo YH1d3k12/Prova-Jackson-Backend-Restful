@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const path = require('path');
+const { min } = require('./product');
 const pathToDBconfig = path.join(__dirname, '../database/database.js');
 const db = require(pathToDBconfig);
 
@@ -9,16 +10,12 @@ const User = db.define('user', {
         primaryKey: true,
         autoIncrement: true,
     },
-    role: {
-        type: DataTypes.TINYINT,
-        allowNull: false
-    },
     name: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(255),
         allowNull: false
     },
     email: {
-        type: DataTypes.STRING(180),
+        type: DataTypes.STRING(255),
         unique: true,
         allowNull: false
     },

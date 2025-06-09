@@ -32,7 +32,6 @@ class UserController {
     async CreateUser(req, res) {
         try {
             const data = {
-                role: req.body.role || 1,
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password
