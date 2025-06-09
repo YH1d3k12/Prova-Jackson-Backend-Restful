@@ -20,6 +20,10 @@ class UserController {
     async GetUserById(req, res) {
         try {
             const user = await services.GetUserById(req.params.id);
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+
             res.status(200).json({ data: user });
         }
         catch (error) {
@@ -57,6 +61,9 @@ class UserController {
             }
 
             const result = await services.UpdateUser(req.params.id, data);
+            if (!result) {
+                return res.status(404).json({ message: "User not found" });
+            }
 
             res.status(200).json(result);
         }
@@ -70,6 +77,10 @@ class UserController {
     async DeleteUser(req, res) {
         try {
             const result = await services.DeleteUser(req.params.id);
+            if (!result) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            
             res.status(200).json({ data: result });
         }
         catch (error) {

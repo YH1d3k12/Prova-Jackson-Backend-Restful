@@ -10,13 +10,792 @@
             "url": "http://localhost:3000"
         }
     ],
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "name": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "format": "password",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "required": true
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "UserInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "format": "password",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                }
+            }
+        },
+        "Product": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "name": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "description": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "required": true
+                },
+                "stock_quantity": {
+                    "type": "integer",
+                    "format": "int32",
+                    "required": true
+                },
+                "category_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "category": {
+                    "$ref": "#/definitions/Category"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "required": true
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "ProductInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "description": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "required": true
+                },
+                "stockQuantity": {
+                    "type": "integer",
+                    "format": "int32",
+                    "required": true
+                },
+                "categoryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                }
+            }
+        },
+        "Category": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "description": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "required": true
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "CategoryInput": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "length": {
+                        "maximum": 255
+                    },
+                    "required": true
+                }
+            }
+        },
+        "Order": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "required": true
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "required": true
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "OrderInput": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "required": true
+                }
+            }
+        },
+        "OrderItem": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "order_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "order": {
+                    "$ref": "#/definitions/Order"
+                },
+                "product_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "product": {
+                    "$ref": "#/definitions/Product"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "required": true
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "OrderItemInput": {
+            "type": "object",
+            "properties": {
+                "orderId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                },
+                "productId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "required": true
+                }
+            }
+        }
+    },
     "paths": {
-        "/users": {
+        "/user/": {
             "get": {
                 "summary": "Lista todos os usuários",
                 "responses": {
                     "200": {
                         "description": "Lista de usuários"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cria um novo usuário",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/UserInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuário criado com sucesso"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "summary": "Lista um usuário específico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário encontrado"
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza um usuário existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/UserInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário atualizado com sucesso"
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta um usuário existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário deletado com sucesso"
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "Realiza o login de um usuário",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/UserInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso"
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/product/": {
+            "get": {
+                "summary": "Lista todos os produtos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de produtos"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cria um novo produto",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/ProductInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Produto criado com sucesso"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/product/{id}": {
+            "get": {
+                "summary": "Lista um produto específico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto encontrado"
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza um produto existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/ProductInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto atualizado com sucesso"
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta um produto existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto deletado com sucesso"
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/Category/": {
+            "get": {
+                "summary": "Lista todas as categorias",
+                "responses": {
+                    "200": {
+                        "description": "Lista de categorias"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cria uma nova categoria",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/CategoryInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Categoria criada com sucesso"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/Category/{id}": {
+            "get": {
+                "summary": "Lista uma categoria específica",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categoria encontrada"
+                    },
+                    "404": {
+                        "description": "Categoria não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza uma categoria existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/CategoryInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Categoria atualizada com sucesso"
+                    },
+                    "404": {
+                        "description": "Categoria não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta uma categoria existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categoria deletada com sucesso"
+                    },
+                    "404": {
+                        "description": "Categoria não encontrada"
+                    },
+                    "500":{
+                      "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/order/": {
+            "get": {
+                "summary": "Lista todos os pedidos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de pedidos"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cria um novo pedido",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/OrderInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido criado com sucesso"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        },
+        "/order/{id}": {
+            "get": {
+                "summary": "Lista um pedido específico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pedido encontrado"
+                    },
+                    "404": {
+                        "description": "Pedido não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza um pedido existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/OrderInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pedido atualizado com sucesso"
+                    },
+                    "404": {
+                        "description": "Pedido não encontrado"
+                    },
+                    "500":{
+                      "description" :  "Erro interno do servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta um pedido existente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pedido deletado com sucesso"
+                    },
+                    "404": {
+                        "description": "Pedido não encontrado"
+                    },
+                    "500":{
+                      "description" :  "Erro interno do servidor"
                     }
                 }
             }

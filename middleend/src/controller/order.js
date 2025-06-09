@@ -18,6 +18,9 @@ class OrderController {
     async GetOrderById(req, res) {
         try {
             const Order = await services.GetOrderById(req.params.id);
+            if (!Order) {
+                return res.status(404).json({ message: "Order not found" });
+            }
             res.status(200).json({ data: Order });
         }
         catch (error) {
@@ -51,7 +54,9 @@ class OrderController {
             }
 
             const result = await services.UpdateOrder(req.params.id, data);
-
+            if (!result) {
+                return res.status(404).json({ message: "Order not found" });
+            }
             res.status(200).json(result);
         }
         catch (error) {
@@ -64,6 +69,9 @@ class OrderController {
     async DeleteOrder(req, res) {
         try {
             const result = await services.DeleteOrder(req.params.id);
+            if (!result) {
+                return res.status(404).json({ message: "Order not found" });
+            }
             res.status(200).json({ data: result });
         }
         catch (error) {

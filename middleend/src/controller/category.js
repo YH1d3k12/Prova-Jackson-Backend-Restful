@@ -18,6 +18,9 @@ class CategoryController {
     async GetCategoryById(req, res) {
         try {
             const category = await services.GetCategoryById(req.params.id);
+            if (!category) {
+                return res.status(404).json({ message: "Category not found" });
+            }
             res.status(200).json({ data: category });
         }
         catch (error) {
@@ -51,7 +54,9 @@ class CategoryController {
             }
 
             const result = await services.UpdateCategory(req.params.id, data);
-
+            if (!result) {
+                return res.status(404).json({ message: "Category not found" });
+            }
             res.status(200).json(result);
         }
         catch (error) {
@@ -64,6 +69,9 @@ class CategoryController {
     async DeleteCategory(req, res) {
         try {
             const result = await services.DeleteCategory(req.params.id);
+            if (!result) {
+                return res.status(404).json({ message: "Category not found" });
+            }
             res.status(200).json({ data: result });
         }
         catch (error) {

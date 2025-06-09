@@ -18,6 +18,11 @@ class ProductController {
     async GetProductById(req, res) {
         try {
             const product = await services.GetProductById(req.params.id);
+
+            if (!product) {
+                return res.status(404).json({ message: "Product not found" });
+            }
+
             res.status(200).json({ data: product });
         }
         catch (error) {
@@ -60,6 +65,10 @@ class ProductController {
 
             const result = await services.UpdateProduct(req.params.id, data);
 
+            if (!result) {
+                return res.status(404).json({ message: "Product not found" });
+            }
+
             res.status(200).json(result);
         }
         catch (error) {
@@ -72,6 +81,11 @@ class ProductController {
     async DeleteProduct(req, res) {
         try {
             const result = await services.DeleteProduct(req.params.id);
+
+            if (!result) {
+                return res.status(404).json({ message: "Product not found" });
+            }
+            
             res.status(200).json({ data: result });
         }
         catch (error) {
